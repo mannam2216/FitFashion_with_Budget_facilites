@@ -12,6 +12,7 @@ import Checkout from './Screens/Checkout';
 import OrderSuccess from './OrderSuccess';
 import Orders from './Screens/Orders';
 import Logout from './Screens/Logout';
+import ProductInfo from './Screens/ProductInfo';
 
 const Stack = createStackNavigator();
 const AppNavigator = () => {
@@ -67,6 +68,11 @@ const AppNavigator = () => {
           options={{headerShown: false}}
           name="Orders"
           component={Orders}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="ProductInfo"
+          component={ProductInfo}
         />
       </Stack.Navigator>
     </NavigationContainer>

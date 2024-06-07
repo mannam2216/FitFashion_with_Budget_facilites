@@ -14,6 +14,7 @@ const Wishlist = () => {
   const dispatch = useDispatch();
   return (
     <View style={{flex: 1}}>
+      {cartData.length > 0 ? (
       <FlatList
         data={cartData}
         renderItem={({item, index}) => {
@@ -31,6 +32,11 @@ const Wishlist = () => {
           );
         }}
       />
+      ) : (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <Text>No Items Added in Wishlist</Text>
+        </View>
+      )}
     </View>
   );
 };

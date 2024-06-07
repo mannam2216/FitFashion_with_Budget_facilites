@@ -1,22 +1,32 @@
 import {View, TouchableOpacity, Text, Image} from 'react-native';
 import React from 'react';
 
-const ProductItem = ({item, onAddToCart, onAddWishlist, onPress}) => {
+const SearchItem = ({item, onAddToCart, onAddWishlist, onPress}) => {
   return (
     <TouchableOpacity
     onPress={() => {
       onPress();
     }}
-      style={{
-        borderRadius: 20,
-        elevation: 5,
-        width: 200,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 10,
-        backgroundColor: '#fff',
-        marginBottom: 10,
-      }}>
+     //  style={{
+     //    borderRadius: 20,
+     //    elevation: 5,
+     //    width: 200,
+     //    justifyContent: 'center',
+     //    alignItems: 'center',
+     //    marginLeft: 10,
+     //    backgroundColor: '#fff',
+     //    marginBottom: 10,
+     //  }}>
+     style={{
+          borderRadius: 20,
+          elevation: 5,
+          width: '94%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginLeft: 10,
+          backgroundColor: '#fff',
+          marginBottom: 10,
+        }}>
       <View style={{width: '100%'}}>
         <Image
           source={item.image}
@@ -96,4 +106,4 @@ const ProductItem = ({item, onAddToCart, onAddWishlist, onPress}) => {
   );
 };
 
-export default ProductItem;
+export default SearchItem;

@@ -23,11 +23,11 @@ const Splash = () => {
   return (
      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
      <Image
-       source={require('../images/playstore.png')}
+       source={require('../images/logo-no-background.png')}
        style={{
-         width: 100,
-         height: 100,
-         borderRadius: 50,
+         width: 200,
+         height: 300,
+        //  borderRadius: 50,
          resizeMode: 'center',
        }}
      />

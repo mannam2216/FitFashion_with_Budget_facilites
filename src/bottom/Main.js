@@ -6,12 +6,14 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../common/Header';
-import {products} from '../Screens/Products';
+import { products } from '../Screens/Products';
 import ProductItem from '../common/ProductItem';
-import {useDispatch, useSelector} from 'react-redux';
-import {addItemToCart, addToWishlist} from '../redux/actions/Actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItemToCart, addToWishlist } from '../redux/actions/Actions';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -24,7 +26,7 @@ const Main = () => {
   const [slipperList, setSlipperList] = useState([]);
   const [jacketLits, setJacketList] = useState([]);
   useEffect(() => {
-    let categories = []; 
+    let categories = [];
     products.category.map(item => {
       categories.push(item.category);
     });
@@ -39,10 +41,11 @@ const Main = () => {
   }, []);
 
   const items = useSelector(state => state);
+  const navigation = useNavigation();
   // console.log(item);
   return (
-    <ScrollView style={{flex: 1, backgroundColor: '#fff'}}>
-      <View style={{flex: 1}}>
+    <ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
+      <View style={{ flex: 1 }}>
         <Header />
         <Image
           source={require('../images/banner.jpeg')}
@@ -54,24 +57,24 @@ const Main = () => {
             marginTop: 10,
           }}
         />
-        <View style={{marginTop: 20}}>
+        <View style={{ marginTop: 20 }}>
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
             data={categoryList}
-            renderItem={({item, index}) => {
+            renderItem={({ item, index }) => {
               return (
                 <TouchableOpacity
                   style={{
                     height: 40,
-                    borderRadius: 20, 
+                    borderRadius: 20,
                     borderWidth: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginLeft: 10,
                   }}>
                   <Text
-                    style={{color: '#000', marginLeft: 10, marginRight: 10}}>
+                    style={{ color: '#000', marginLeft: 10, marginRight: 10 }}>
                     {item}
                   </Text>
                 </TouchableOpacity>
@@ -89,16 +92,20 @@ const Main = () => {
           }}>
           New T-Shirts
         </Text>
-        
-      
-        <View style={{marginTop: 15}}>
+        <View style={{ marginTop: 15 }}>
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
             data={tshirtList}
-            renderItem={({item, index}) => {
+            renderItem={({ item, index }) => {
               return (
                 <ProductItem
+                  onPress={() => {
+                      // Convert product data to JSON string
+                      const jsonProductData = JSON.stringify(item);
+                      AsyncStorage.setItem('product', jsonProductData);
+                      navigation.navigate('ProductInfo');
+                    }}
                   item={item}
                   onAddWishlist={x => {
                     dispatch(addToWishlist(x));
@@ -121,12 +128,12 @@ const Main = () => {
           }}>
           New Trousers
         </Text>
-        <View style={{marginTop: 15}}>
+        <View style={{ marginTop: 15 }}>
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
             data={trouserList}
-            renderItem={({item, index}) => {
+            renderItem={({ item, index }) => {
               return (
                 <ProductItem
                   item={item}
@@ -151,12 +158,12 @@ const Main = () => {
           }}>
           New Jeans
         </Text>
-        <View style={{marginTop: 15}}>
+        <View style={{ marginTop: 15 }}>
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
             data={jeansList}
-            renderItem={({item, index}) => {
+            renderItem={({ item, index }) => {
               return (
                 <ProductItem
                   item={item}
@@ -181,12 +188,12 @@ const Main = () => {
           }}>
           New Slippers
         </Text>
-        <View style={{marginTop: 15}}>
+        <View style={{ marginTop: 15 }}>
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
             data={slipperList}
-            renderItem={({item, index}) => {
+            renderItem={({ item, index }) => {
               return (
                 <ProductItem
                   item={item}
@@ -211,12 +218,12 @@ const Main = () => {
           }}>
           New Shoes
         </Text>
-        <View style={{marginTop: 15, marginBottom: 100}}>
+        <View style={{ marginTop: 15, marginBottom: 100 }}>
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
             data={shoesList}
-            renderItem={({item, index}) => {
+            renderItem={({ item, index }) => {
               return (
                 <ProductItem
                   item={item}

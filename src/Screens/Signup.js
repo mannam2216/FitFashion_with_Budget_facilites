@@ -75,12 +75,12 @@ const Signup = () => {
     <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
       <View style={{flex: 1}}>
         <Image
-          source={require('../images/playstore.png')}
-          style={{width: 60, height: 60, alignSelf: 'center', marginTop: 50}}
+          source={require('../images/logo-no-background.png')}
+          style={{width: 310, height: 80, alignSelf: 'center', marginTop: 90}}
         />
         <Text
           style={{
-            marginTop: 50,
+            marginTop: 40,
             alignSelf: 'center',
             fontSize: 24,
             fontWeight: '600',
